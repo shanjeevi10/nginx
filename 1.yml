@@ -1,0 +1,21 @@
+- name: test class
+  hosts: all
+  become: yes
+  tasks:
+    - name: remove packages
+      apt:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - ngnix
+        - apache2
+    - name: install package
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: create the file
+      copy:
+        src: ./index.html
+        dest: /var/www/html/
