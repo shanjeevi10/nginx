@@ -7,7 +7,7 @@
         name: "{{ item }}"
         state: absent
       loop:
-        - ngnix
+        - nginx
         - apache2
     - name: install package
       apt:
